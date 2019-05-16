@@ -1,0 +1,99 @@
+.close {
+    @include no-style;
+    @include no-mg-pd;
+    color: $neutral;
+}
+
+.next {
+    background-color: $success;
+    border-radius: 5px;
+    font-size: $value;
+    line-height: ($value*3)/2;
+    padding: $value/2;
+    width: 25%;
+    text-align: center;
+        &-first {
+            margin: $value auto;
+            width: 50%;
+        }
+    & a {
+        @include button;
+        @include no-style;
+        color: $neutral;
+    }
+}
+.prev {
+    border: 2px solid $success;
+    border-radius: 5px;
+    font-size: $value;
+    line-height: ($value*3)/2;
+    padding: $value/2;
+    width: 25%;
+    & a {
+        @include button;
+        @include no-style;
+        color: $success;
+    }
+    
+    // & a:hover {
+    //     color: $neutral;
+    //     background-color: $success;
+    // }
+
+    // &:hover {
+    //     background-color: $success;
+    // }
+}
+
+
+.understand {
+    background-color: $success;
+    border-radius: 5px;
+    font-size: $value;
+    line-height: ($value*3)/2;
+    padding: $value/2;
+    width: 60%;
+    text-align: center;
+    display: inline-block;
+    & a {
+        @include button;
+        @include no-style;
+        color: $neutral;
+    }
+}
+
+.big {
+    width: 100%;
+}
+
+.small {
+    font-size: $value*0.8;
+}
+
+.login {
+    margin-top: $value*4;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    & a {
+        color: $neutral;
+        @include no-style;
+        font-weight: 600;
+        background-color: $success;
+        padding: $value/2;
+        border-radius: 5px;
+        font-size: $value*0.8;
+        margin-left: $value/2;
+    }
+}
+.forgot {
+    margin-top: $value*2;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    font-size: $value*0.8;
+    & a {
+        color: $success;
+        text-decoration: underline;
+    }
+}
