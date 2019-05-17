@@ -12,7 +12,7 @@ class Header extends Component {
                         <img src={logo} alt="Widget Logo" />
                         <p className="header_title">Widget</p>
                     </div>
-                    <a className="close" href="/">X</a>
+                    <a className="close" onClick={() => this.props.hideWidget()}>X</a>
                 </div>
             </div>
         );

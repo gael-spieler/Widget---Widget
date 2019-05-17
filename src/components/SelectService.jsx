@@ -41,8 +41,8 @@ class SelectService extends Component {
                             </div>
                         </div>
                     </form>
-                    <div className="next next-first">
-                        <a href="/">Next</a>
+                    <div onClick={() => this.props.next(this.props.step)} className="next next-first">
+                        <span>Next</span>
                     </div>
                 </div>
             </div>

@@ -12,6 +12,10 @@
     padding: $value/2;
     width: 25%;
     text-align: center;
+    @include button;
+    @include no-style;
+    color: $neutral;
+    cursor: pointer;
         &-first {
             margin: $value auto;
             width: 50%;

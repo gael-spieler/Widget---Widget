@@ -1,25 +1,33 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './index.scss';
-import icon from './img/widget_icon.png';
-import bg from './img/bg.png';
+import Icon from './components/Icon.jsx';
+import Widget from './components/Widget.jsx';
 
-function App() {
+class App extends Component {
 
-  var bgStyle = {
-    backgroundImage: `url(${bg})`
+  state = {
+    hidden: true,
   }
-  
-  return (
-    <div>
-      <div className="wrapper wrapper-bg" style={bgStyle}>
-        <div className="icon">
-            <a href="/services">
-                <img src={icon} alt="Widget Icon"/>
-            </a>
-        </div>
+
+  showWidget = () => {
+      const hidden = false;
+      this.setState({hidden});
+  }
+
+  hideWidget = () => {
+    const hidden = true;
+    this.setState({hidden});
+  }
+  render() {
+    return (
+      <div>
+        {this.state.hidden === true && <Icon showWidget={this.showWidget} hideWidget={this.hideWidget} />}
+        {this.state.hidden === false && <Widget showWidget={this.showWidget} hideWidget={this.hideWidget} />}
+        
       </div>
-    </div>
-  );
+    );
+
+  }
 }
 
 export default App;
