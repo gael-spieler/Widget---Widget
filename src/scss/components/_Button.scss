@@ -2,10 +2,15 @@
     @include no-style;
     @include no-mg-pd;
     color: $neutral;
+    cursor: pointer;
+    &:hover {
+        font-weight: 900;
+    }
 }
 
 .next {
     background-color: $success;
+    border: 2px solid $success;
     border-radius: 5px;
     font-size: $value;
     line-height: ($value*3)/2;
@@ -24,6 +29,9 @@
         @include button;
         @include no-style;
         color: $neutral;
+        &:hover {
+            font-weight: 700;
+        }
     }
 }
 .prev {
@@ -33,20 +41,17 @@
     line-height: ($value*3)/2;
     padding: $value/2;
     width: 25%;
+    cursor: pointer;
+
     & a {
         @include button;
         @include no-style;
         color: $success;
+        &:hover {
+            font-weight: 700;
+        }
     }
     
-    // & a:hover {
-    //     color: $neutral;
-    //     background-color: $success;
-    // }
-
-    // &:hover {
-    //     background-color: $success;
-    // }
 }
 
 
@@ -75,19 +80,36 @@
 }
 
 .login {
-    margin-top: $value*4;
+    margin: $value 0 $value*4 0;
     display: flex;
     align-items: baseline;
     justify-content: center;
     & a {
-        color: $neutral;
+        color: $success;
         @include no-style;
-        font-weight: 600;
-        background-color: $success;
-        padding: $value/2;
+        font-weight: 400;
+        // background-color: $success;
+        // padding: $value/2;
         border-radius: 5px;
-        font-size: $value*0.8;
-        margin-left: $value/2;
+        font-size: $value;
+        margin-left: $value/3;
+        text-decoration: underline;
+        cursor: pointer;
+        &:hover {
+            font-weight: 900;
+        }
+    }
+}
+
+.back  {
+    font-size: $value*0.8;
+    font-weight: 300;
+    color: $success;
+    text-align: center;
+    cursor: pointer;
+    &:hover {
+        font-weight: 700;
+        text-decoration: underline;
     }
 }
 .forgot {

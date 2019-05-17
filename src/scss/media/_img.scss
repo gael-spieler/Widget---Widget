@@ -5,9 +5,11 @@
     margin: $value;
     & img {
         width: 64px;
+        -webkit-transition: width 0.5s, height 0.5s; /* For Safari 3.1 to 6.0 */
+        transition: width 0.5s, height 0.5s;
     }
     & img:hover {
-        width: 74px;
+      width: 84px;
     }
 }
 

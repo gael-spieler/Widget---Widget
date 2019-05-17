@@ -10,7 +10,7 @@ class Header extends Component {
                 <div className="header">
                     <div className="header_brand">
                         <img src={logo} alt="Widget Logo" />
-                        <p className="header_title">Widget</p>
+                        <p className="header_title">PlatBoo</p>
                     </div>
                     <a className="close" onClick={() => this.props.hideWidget()}>X</a>
                 </div>

@@ -12,7 +12,7 @@ class Icon extends Component {
             <div>
                 <div className="wrapper wrapper-bg" style={bgStyle}>
                     <div className="icon">
-                        <a onClick={() => this.props.showWidget()}>
+                        <a title="Save time and book easily with Platboo!" onClick={() => this.props.showWidget()}>
                             <img src={icon} alt="Widget Icon"/>
                         </a>
                     </div>

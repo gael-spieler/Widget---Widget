@@ -1,0 +1,37 @@
+@keyframes primaryBg{
+    from {
+        background-color: $success;
+    }
+    to {
+        background-color:$neutral;
+        }
+}
+@keyframes primaryText{
+    from {
+        color: $neutral;
+    }
+    to {
+        color:$success;
+        }
+}
+
+
+
+@keyframes secondaryBg {
+    from {
+        background-color:$neutral;
+        color: $success;
+    }
+    to {
+        background-color: $success;
+        color: $neutral;
+        }
+}
+@keyframes secondaryText {
+    from {
+        color: $success;
+    }
+    to {
+        color: $neutral;
+        }
+}
