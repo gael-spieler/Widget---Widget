@@ -1,7 +1,22 @@
 import React, {Component} from 'react';
+import Login from './Login';
 import '../index.scss'
 
 class FillData extends Component {
+    state = {
+        loginHidden: true,
+    }
+    
+    showLogin = () => {
+        const loginHidden = false;
+        this.setState({loginHidden});
+    }
+
+    hideLogin = () => {
+    const loginHidden = true;
+    this.setState({loginHidden});
+    }
+
     render() {
         return (
 <div>
@@ -44,17 +59,18 @@ class FillData extends Component {
                 </div>
             </div>
         </form>
-        <div className="next big">
+        <div className="next big" onClick={()=> this.props.next(this.props.step)}>
             <a title="Signup, confirm your booking and proceed to payment">Signup and Pay</a>
         </div>
 
-        <p className="login">
-        I already have an account. <a title="Log In to finalize your booking"> Login</a>      
+        <p className="login" >
+        I already have an account. <a onClick={()=> this.showLogin()} title="Log In to finalize your booking"> Login</a>      
         </p> 
         <div className="back" onClick={()=> this.props.prev(this.props.step)}>
                         <a title="Go back to date and time availability">&#10094; Go Back</a>
         </div>
     </div>
+    {this.state.loginHidden === false && <Login hideLogin={this.hideLogin} loginHidden={this.state.loginHidden} next={this.props.next} step={this.props.step}/>}
 </div>
         );
     }

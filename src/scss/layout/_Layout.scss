@@ -1,8 +1,8 @@
 .layout {
     background-color: $neutral;
     @media screen and (min-width:$mq-md) {
-        width: 35vw;
         position: fixed;
+        width: 35vw;
         bottom: 3%;
         right: 3%;
         border: 1px solid lightgrey;

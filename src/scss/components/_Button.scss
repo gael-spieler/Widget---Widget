@@ -6,6 +6,11 @@
     &:hover {
         font-weight: 900;
     }
+    &-login {
+        text-align: right;
+        color: $light;
+        font-weight: 700;
+    }
 }
 
 .next {

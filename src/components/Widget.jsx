@@ -4,6 +4,8 @@ import Header from './Header';
 import SelectService from './SelectService';
 import SelectDateTime from './SelectDateTime';
 import FillData from './FillData';
+import Review from './Review';
+import ThankYou from './ThankYou';
 import bg from '../img/bg.png';
 
 
@@ -22,6 +24,11 @@ class Widget extends Component {
         this.setState({step});
     }
 
+    back = () => {
+        const step = 0
+        this.setState({step})
+    }
+
     render() {
         var bgStyle = {
             backgroundImage: `url(${bg})`
@@ -35,6 +42,8 @@ class Widget extends Component {
                         {this.state.step === 0 && <SelectService step={0} next={this.next} />}
                         {this.state.step === 1 && <SelectDateTime step={1}  next={this.next} prev={this.prev} />}
                         {this.state.step === 2 && <FillData step={2}  next={this.next} prev={this.prev} />}
+                        {this.state.step === 3 && <Review step={3}  next={this.next} prev={this.prev} />}
+                        {this.state.step === 4 && <ThankYou step={4} back={this.back} />}
                         </div>
                     </div>
                 </div>
