@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
-import '../index.scss'
+import '../index.scss';
+
 
 class SelectService extends Component {
 
+
+
     render() {
+
         var svgStyle = {
             stroke: '#fbba42',
             strokeWidth: 2
@@ -18,32 +22,26 @@ class SelectService extends Component {
                     <line x1="0" y1="0" x2="100" y2="0" style={svgStyle} />
                     </svg>
 
+
                     <p className="container_claim">
                     Select your service:
                     </p> 
+                    <form className="form" onSubmit={(e) => this.props.selectService(e)}>
+                        <div className="form_radio">
 
-                    <form className="form">
-                        <div className="form_radio" name="services">
-                            <div className="input">
-                                <input type="radio" value="1h"/><span>1h - Fitness Training - $100</span>
-                            </div>
-                            <div className="input">
-                                <input type="radio" value="1.5h"/><span>1.5h - Fitness Training - $150</span>
-                            </div>
-                            <div className="input">
-                                <input type="radio" value="2h"/><span>2h - Intensive Training - $200</span>
-                            </div>
-                            <div className="input">
-                            <input type="radio" value="1h"/><span>1h - Intensive Training - $150</span>
-                            </div>
-                            <div className="input">
-                            <input type="radio" value="1.5h"/><span>1.5h - Customize Training - $150</span>
-                            </div>
+                        {this.props.services.map((service, index) => {
+                                return (
+                                    <div className="input">
+                                        <input required type="radio" value={service.name} name="services" id={service._id} key={index} onChange={(e) => this.props.updateService(e)}/>
+                                        <label htmlFor={service}><span>{service.fullLength} min. - {service.name} - <strong>${service.price}</strong></span></label>
+                                    </div>
+                                    )
+                                })}
+                           
                         </div>
+                        <input type="submit" value="Next" className="next next-first" />
+
                     </form>
-                    <div onClick={() => this.props.next(this.props.step)} className="next next-first">
-                        <a title="Check date and time availability">Next</a>
-                    </div>
                 </div>
             </div>
         );

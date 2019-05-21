@@ -41,7 +41,7 @@ class FillData extends Component {
             password: this.state.password
         }
 
-        axios.post('http://localhost:3000/api/signup', user)
+        axios.post(process.env.REACT_APP_CREATE_USER, user)
         .then(response => {
             console.log('user', user);
             console.log('response', response.data);
@@ -67,19 +67,19 @@ class FillData extends Component {
                 <div className="form_inline">
                     <div className="form_display">
                         <label htmlFor="first_name">First Name</label>
-                        <input type="text" name="first_name" value={this.state.first_name} onChange={this.updateField} required />
+                        <input type="text" name="first_name" value={this.state.first_name} onChange={(e) => this.updateField(e)} required />
                     </div>
                     <div className="form_display">
                         <label htmlFor="last_name">Last Name</label>
-                        <input type="text" name="last_name" required value={this.state.last_name} onChange={this.updateField}/>
+                        <input type="text" name="last_name" required value={this.state.last_name} onChange={(e) => this.updateField(e)}/>
                     </div>
                 </div>
 
                 <label htmlFor="email">Email</label>
-                <input type="email" name="email"  value={this.state.email} onChange={this.updateField} required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" title=" Must be a valid email" />
+                <input type="email" name="email"  value={this.state.email} onChange={(e) => this.updateField(e)} required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" title=" Must be a valid email" />
 
                 <label htmlFor="Password">Create Password</label>
-                <input type="password" name="password" value={this.state.password} onChange={this.updateField} required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" />
+                <input type="password" name="password" value={this.state.password} onChange={(e) => this.updateField(e)} required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" />
 
                 <label htmlFor="card_number">Card Number</label>
                 <input type="number" />

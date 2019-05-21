@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import App from './App';
-import Widget from './components/Widget';
+
 
 class Routes extends Component {
 
@@ -9,7 +9,7 @@ class Routes extends Component {
         return (
             <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <Switch>
-                    <Route path="/" component={App} exact />
+                    <Route path="/:id" component={App} exact />
                 </Switch>
             </BrowserRouter>
         )
