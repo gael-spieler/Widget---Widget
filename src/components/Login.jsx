@@ -16,8 +16,8 @@ class Login extends Component {
                                 <input type="password" required />
                             </div>
                         </form>
-                        <div class="next big">
-                            <a onClick={()=> this.props.next(this.props.step)}>Login</a>
+                        <div class="next big" onClick={()=> this.props.next(this.props.step)}>
+                            <a title="Log in and proceed with booking">Login</a>
                         </div>
                     </div>
                 </div>
