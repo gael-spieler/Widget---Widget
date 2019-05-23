@@ -3,20 +3,28 @@ import '../index.scss'
 
 class Bookings extends Component {
 
-    componentWillMount() {
-        this.props.renderBookings()
+    componentDidMount() {
+
     }
+
     render() {
         return (
             <div>
                 {
-                    this.props.booked.map((b) => {
+                    this.props.bookings.map((b) => {
+
+                    let opening = new Date(2019, 0, 1, 9, 0)
+                    let closing = new Date(2019, 0, 1, 17, 0)
+                    
                     const allowed = {
-                        start: 9,
-                        end: 17
-                    }
+                        start: opening.getHours(),
+                        end: closing.getHours()
+                    }  
+                    
+                    // b.start = b.start.getHours()
+                    
                     let bookingStyle = {
-                    top: (this.props.notAvailable - allowed.start)*31 + 'px'
+                    top: (b.start - allowed.start)*32 + 'px'
                     }
                     return (
                     <div className="booking" style={bookingStyle} name={b.name}>Not Available</div>

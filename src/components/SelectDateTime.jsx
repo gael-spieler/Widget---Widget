@@ -10,7 +10,7 @@ class SelectDateTime extends Component {
                         <p className="container_claim">
                             Select availability:
                         </p> 
-                         <Calendar bookings={this.props.bookings} newBooking={this.props.newBooking} services={this.props.services} filterByDate={this.props.filterByDate}></Calendar> 
+                         <Calendar bookings={this.props.bookings} serviceDuration={this.props.serviceDuration} services={this.props.services} filterByDate={this.props.filterByDate} date={this.props.date} updateDate={this.props.updateDate} updateTime={this.props.updateTime}></Calendar> 
 
                         <div className="container_nav" >
                             <div className="prev" onClick={() => this.props.prev(this.props.step)} >

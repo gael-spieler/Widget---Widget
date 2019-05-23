@@ -1,65 +1,41 @@
 import React, {Component} from 'react';
 import '../index.scss'
-import moment from 'moment';
 import SwitchDate from './SwitchDate';
 import Slots from './Slots';
-// import Bookings from './Bookings';
+import Bookings from './Bookings';
 
 class Calendar extends Component {
     state = {
-        booked: [],
-        today: moment().format('DD MMM YYYY'), 
-        availableSlots: [], 
-        notAvailable: []
+        availableSlots: []
     }
 
-    // componentWillMount() {
-    //  this.filterByDate(this.state.date) 
-    // }
-
-    nextDay = (date) => {
-        let nextDay = moment(date).add(1, 'days')
-        console.log(nextDay)
-        // this.setState({today:nextDay._i})
-        // console.log('setnext', this.state.today)
+    componentWillMount() {
+        console.log('props', this.props)
     }
-
-    previousDay = (date) => {
-        let previousDay = moment(date).subtract(1, 'days')
-        console.log({previousDay})
-    } 
 
     buildSlots = () => {
-        console.log(this.props)     
+        console.log(this.props)  
+        
+        let opening = new Date(2019, 0, 1, 9, 0)
+        let closing = new Date(2019, 0, 1, 17, 0)
         
         const allowed = {
-            start: 9,
-            end: 17
+            start: opening.getHours(),
+            end: closing.getHours()
         }
     
         console.log({allowed})
     
-        let time = allowed.start - this.props.newBooking.duration
+        let time = allowed.start - this.props.serviceDuration
         console.log({time})
     
     
-        while (time < allowed.end - this.props.newBooking.duration) {
-            time += this.props.newBooking.duration
+        while (time < allowed.end - this.props.serviceDuration) {
+            time += this.props.serviceDuration
             this.state.availableSlots.push(time)
         }
         console.log(this.state.availableSlots) 
         }
-
-    // renderBookings = () => {
-    //     console.log('fml')
-    
-
-    //     console.log('waat')
-
-    //     let notAvailable = this.state.booked.filter(b => b.start = moment(b.start).format('HH').toString().toNumber())
-    //     console.log('notavailable', notAvailable)
-    //     this.setState({notAvailable})
-    // }
 
     
 
@@ -67,8 +43,11 @@ class Calendar extends Component {
             return (
                 <div>
                     <div id="calendar">
-                        <SwitchDate bookings={this.props.bookings} filterByDate={this.props.filterByDate} today={this.state.today} previousDay={this.previousDay} nextDay={this.nextDay} renderBookings={this.renderBookings}></SwitchDate>
-                        <Slots availableSlots={this.state.availableSlots} buildSlots={this.buildSlots}></Slots>
+                        <SwitchDate bookings={this.props.bookings} filterByDate={this.props.filterByDate} date={this.props.date} updateDate={this.props.updateDate}></SwitchDate>
+                        <div className="slot-container">
+                            <Slots availableSlots={this.state.availableSlots} buildSlots={this.buildSlots} updateTime={this.props.updateTime}></Slots>
+                            <Bookings bookings={this.props.bookings}></Bookings>
+                        </div>
                     </div>
                 </div>
             );
@@ -91,5 +70,17 @@ export default Calendar;
 //         )
 //     })
 // }
+
+// nextDay = (date) => {
+//     let nextDay = moment(date).add(1, 'days')
+//     console.log(nextDay)
+//     // this.setState({today:nextDay._i})
+//     // console.log('setnext', this.state.today)
+// }
+
+// previousDay = (date) => {
+//     let previousDay = moment(date).subtract(1, 'days')
+//     console.log({previousDay})
+// } 
 
 

@@ -10,10 +10,10 @@ class Slots extends Component {
 
     render() {
         return (
-            <div>
+            <div onClick={(e) => this.props.updateTime(e)}>
                     {this.props.availableSlots.map(slot => {
                     return (
-                    <div className="time" id={slot}>{slot}</div>
+                    <div className="slot" id={slot}>{slot}</div>
                     )
                     })}
             </div>

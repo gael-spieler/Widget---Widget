@@ -2,15 +2,23 @@
   width: 100%;
   margin: auto;
   background-color: aquamarine;
+  
 }
-.time {
+
+.slot-container {
+  width: 100%;
+  position: relative;
+
+}
+.slot {
   border-bottom: 1px solid #ccc;
   padding: 0.5rem;
   height: 2rem;
   width: 100%;
+  text-align: start;
 }
 
-.time:hover {
+.slot:hover {
   cursor: pointer;
   background: rgba(0,0,255,.05)
 }
@@ -19,8 +27,8 @@
   background: rgba(0,0,0,.1);
   position: absolute;
   width: 100%;
-  padding: 10px 0 10px 10px;
-  height: 20px;
+  padding: 0.5rem;
+  height: 2rem;
   text-align: center;
   cursor: not-allowed;
 }
@@ -30,7 +38,7 @@
   position: absolute;
   width: 100%;
   padding: 10px 0 10px 10px;
-  height: 20px;
+  height: 2rem;
   text-align: center;
 }
 

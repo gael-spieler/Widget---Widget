@@ -4,21 +4,14 @@ import moment from 'moment';
 
 class SwitchDate extends Component {
 
-    state = {
-        date: moment().format('YYYY-MM-DD')
-    }
 
-   updateDate = (e) => {
-       let newDate = e.target.value
-       console.log({newDate})
-       this.props.filterByDate(newDate)
-   }
+
 
     render() {
         return (
             <div>
                 <div id="nav">
-                    <input id="date" defaultValue={this.state.date} type="date" onChange={(e) => this.updateDate(e)}/>
+                    <input id="date" defaultValue={this.props.date} type="date" onChange={(e) => this.props.updateDate(e)}/>
                 </div>
             </div>
         );

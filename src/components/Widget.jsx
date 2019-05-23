@@ -24,7 +24,13 @@ class Widget extends Component {
         password: '', 
         errorMessage: '',
         bookings: [],
-        date: moment().format('YYYY-MM-DD')
+        date: moment().format('YYYY-MM-DD'),
+        selServiceId: '',
+        selService: '',
+        serviceDuration: 1,
+        newDate: '',
+        newStart: '',
+        newEnd: ''
     }
 
 
@@ -44,14 +50,14 @@ class Widget extends Component {
         });
         this.filterByDate(this.state.date)
     }
-
+    // get Bookings
     filterByDate = (date) => {
         axios.get(process.env.REACT_APP_GET_BOOKINGS + this.props.id + '/?date=' + date)
         .then(response => {
             console.log('response', response.data);
             let bookings = response.data
-            bookings.map(booking => booking.start = moment(booking.start).format('DD MMM YYYY HH:mm'))
-            bookings.map(booking => booking.end = moment(booking.end).format('DD MMM YYYY HH:mm'))
+            bookings.map(booking => booking.start = moment(booking.start).format('HH'))
+            bookings.map(booking => booking.end = moment(booking.end).format('HH'))
             this.setState({bookings})
             console.log('state bookings', this.state.bookings)
         })
@@ -60,22 +66,40 @@ class Widget extends Component {
         });
     }
 
-    updateService = (e) => {
-        console.log(e.target.value, e.target.id, e.target.key);
-        let newBooking = {selServiceId: e.target.id, 
-                        selService: e.target.value,
-                        duration: 1
-                        }
-        this.setState({newBooking})
-        console.log(this.state)
-    }
-
+    // service
     selectService = (e) => {
         e.preventDefault()
         console.log(this.state)
         this.next(this.state.step)
     }
+    updateService = (e) => {
+        console.log(e.target.value, e.target.id, e.target.key);
+        let selServiceId = e.target.id
+        let selService = e.target.value
+        
 
+        this.setState({selServiceId})
+        this.setState({selService})
+        console.log(this.state)
+    }
+
+    // get date and time of booking
+    updateDate = (e) => {
+        let newDate = e.target.value
+        this.filterByDate(newDate)
+        this.setState({newDate})
+        console.log(this.state.newDate)
+    }
+
+    updateTime = (e) => {
+        console.log('target', e.target.id)
+        let newStart = e.target.id
+        let newEnd = e.target.id + this.state.duration
+        this.setState({newStart})
+        this.setState({newEnd})
+    }
+
+    // signup
     updateDetails= (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -128,10 +152,10 @@ class Widget extends Component {
                     <div className="layout">
                         <Header showWiget={this.props.showWidget} hideWidget={this.props.hideWidget}></Header>
                         <div className="wrapper">
-                        {this.state.step === 0 && <SelectService step={0} next={this.next} id={this.props.id} newBooking={this.state.newBooking} services={this.state.services} updateService={this.updateService} selectService={this.selectService}/>}
-                        {this.state.step === 1 && <SelectDateTime step={1}  next={this.next} prev={this.prev} newBooking={this.state.newBooking} bookings={this.state.bookings} services={this.state.services} filterByDate={this.filterByDate}/>}
+                        {this.state.step === 0 && <SelectService step={0} next={this.next} id={this.props.id} services={this.state.services} updateService={this.updateService} selectService={this.selectService}/>}
+                        {this.state.step === 1 && <SelectDateTime step={1}  next={this.next} prev={this.prev} serviceDuration={this.state.serviceDuration} bookings={this.state.bookings} services={this.state.services} filterByDate={this.filterByDate} date={this.state.date} updateDate={this.updateDate} updateTime={this.updateTime}/>}
                         {this.state.step === 2 && <FillData step={2}  next={this.next} prev={this.prev} signup={this.signup} updateDetails={this.updateDetails}/>}
-                        {this.state.step === 3 && <Review step={3}  next={this.next} prev={this.prev} newBooking={this.state.newBooking} services={this.state.services}/>}
+                        {this.state.step === 3 && <Review step={3}  next={this.next} prev={this.prev} serviceDuration={this.state.serviceDuration} services={this.state.services}/>}
                         {this.state.step === 4 && <ThankYou step={4} back={this.back} />}
                         </div>
                     </div>
