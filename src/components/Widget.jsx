@@ -16,22 +16,30 @@ class Widget extends Component {
 
     state = {
         step: 0,
-        newBooking: {},
         services: [],
+        bookings: [],
+
+        errorMessage: '',
+
+        date: moment().format('YYYY-MM-DD'),
+
+        selServiceId: '',
+        selService: '',
+        serviceDuration: 1,
+        servicePrice: '',
+
+        newDate: moment().format('YYYY-MM-DD'),
+        newStart: 12,
+        newEnd: '',
+        customerId: '',
+        providerId: this.props.id,
+        data: {},
+
         first_name: '', 
         last_name: '',
         email: '', 
-        password: '', 
-        errorMessage: '',
-        bookings: [],
-        date: moment().format('YYYY-MM-DD'),
-        selServiceId: '',
-        selService: '',
-        serviceDuration: '',
-        newDate: '',
-        newStart: '',
-        newEnd: '', 
-        fullLength: ''
+        password: '',
+        user: {}
     }
 
 
@@ -50,6 +58,8 @@ class Widget extends Component {
             console.log('error', error);
         });
         this.filterByDate(this.state.date)
+
+        this.book()
     }
     // get Bookings
     filterByDate = (date) => {
@@ -82,6 +92,7 @@ class Widget extends Component {
         this.setState({selServiceId, selService})
         console.log(this.state)
         this.findDuration(e.target.id)
+        this.findPrice(e.target.id)
     }
 
     findDuration = (id) => {
@@ -91,9 +102,16 @@ class Widget extends Component {
         this.setState({serviceDuration})
     }
 
+    findPrice = (id) => {
+        let selected = this.state.services.find(service => service._id === id)
+        let servicePrice = selected.price
+        this.setState({servicePrice})
+    }
+
     // get date and time of booking
     updateDate = (e) => {
         let newDate = e.target.value
+        console.log(newDate)
         this.filterByDate(newDate)
         this.setState({newDate})
         console.log(this.state.newDate)
@@ -107,6 +125,8 @@ class Widget extends Component {
 
         let newStart = e.target.id
         let newEnd = e.target.id + this.state.duration
+        console.log(newStart)
+        console.log(newEnd)
         console.log('newStart', e.target.id)
 
         this.setState({newStart, newEnd})
@@ -134,7 +154,12 @@ class Widget extends Component {
         axios.post(process.env.REACT_APP_CREATE_USER, user)
         .then(response => {
             console.log('user', user);
+            this.setState({user})
             console.log('response', response.data);
+            let customerInfo = response.data
+            console.log('id', customerInfo._id)
+            let customerId = customerInfo._id
+            this.setState({customerId})
             alert('Record created');
             this.next(this.state.step);
         })
@@ -158,6 +183,38 @@ class Widget extends Component {
         this.setState({step})
     }
 
+    // book 
+
+    book = () => {
+
+        // convert dates
+        let startDate = this.state.newDate.toString()
+        var parts = startDate.split('-')
+        let start = new Date (parts[0], parts[1], parts[2], this.state.newStart)
+        let end = new Date (parts[0], parts[1], parts[2], (this.state.newStart + this.state.serviceDuration))
+        console.log(start, end)
+
+        let data = {
+            start: start,
+            end: end, 
+            service: this.state.selServiceId,
+            customer: this.state.customerId,
+            provider: this.state.providerId
+        }
+
+        this.setState({data})
+
+        axios.post(process.env.REACT_APP_CREATE_BOOKING, data)
+        .then(response => {
+            console.log(response)
+            alert('Booking Created successfully')
+            this.next(this.state.step)
+        })
+        .catch(error => {
+            console.log('error', error);
+        })  
+    }
+
 
     render() {
         return (
@@ -169,8 +226,8 @@ class Widget extends Component {
                         {this.state.step === 0 && <SelectService step={0} next={this.next} id={this.props.id} services={this.state.services} updateService={this.updateService} selectService={this.selectService}/>}
                         {this.state.step === 1 && <SelectDateTime step={1}  next={this.next} prev={this.prev} serviceDuration={this.state.serviceDuration} bookings={this.state.bookings} services={this.state.services} filterByDate={this.filterByDate} date={this.state.date} updateDate={this.updateDate} updateTime={this.updateTime} selService={this.state.selService}/>}
                         {this.state.step === 2 && <FillData step={2}  next={this.next} prev={this.prev} signup={this.signup} updateDetails={this.updateDetails}/>}
-                        {this.state.step === 3 && <Review step={3}  next={this.next} prev={this.prev} serviceDuration={this.state.serviceDuration} services={this.state.services}/>}
-                        {this.state.step === 4 && <ThankYou step={4} back={this.back} />}
+                        {this.state.step === 3 && <Review step={3}  next={this.next} prev={this.prev} serviceDuration={this.state.serviceDuration} selService={this.state.selService} servicePrice={this.state.servicePrice} newDate={this.state.newDate} newStart={this.state.newStart} name={this.state.first_name} lastname={this.state.last_name} email={this.state.email} book={this.book}/>}
+                        {this.state.step === 4 && <ThankYou step={4} back={this.back} name={this.state.first_name} selService={this.state.selService}/>}
                         </div>
                     </div>
 

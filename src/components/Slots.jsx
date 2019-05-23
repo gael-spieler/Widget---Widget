@@ -37,7 +37,7 @@ class Slots extends Component {
 
     render() {
         return (
-            <div onChange={(e) => this.props.updateTime(e)}  onClick={(e) => this.showMyBooking(e)}>
+            <div onClick={(e) => { this.props.updateTime(e); this.showMyBooking(e)}}>
                     {this.props.availableSlots.map(slot => {
                     return (
                     <div className="slot" id={slot}>{slot}</div>

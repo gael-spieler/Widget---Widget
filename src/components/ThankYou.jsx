@@ -12,16 +12,15 @@ class ThankYou extends Component {
             <div>
                 <div className="container">
                     <p className="container_claim">
-                    Thank you Pedro! <br />
-                    Your Booking has been successful. <br />
-                    We've sent you a reminder email.
+                    Thank you {this.props.name} !<br />
+                    Your Booking has been successful :)
                     </p>
                     <svg height="3" width="100">
                         <line x1="0" y1="0" x2="100" y2="0" style={svgStyle} />
                     </svg>
 
                     <p className="container_claim">
-                    Enjoy your fitness class, <br />
+                    Enjoy your {this.props.selService}, <br />
                     see you soon!
                     </p>
                     <div className="back" href="/">
