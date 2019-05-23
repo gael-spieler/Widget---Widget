@@ -27,10 +27,11 @@ class Widget extends Component {
         date: moment().format('YYYY-MM-DD'),
         selServiceId: '',
         selService: '',
-        serviceDuration: 1,
+        serviceDuration: '',
         newDate: '',
         newStart: '',
-        newEnd: ''
+        newEnd: '', 
+        fullLength: ''
     }
 
 
@@ -73,14 +74,21 @@ class Widget extends Component {
         this.next(this.state.step)
     }
     updateService = (e) => {
-        console.log(e.target.value, e.target.id, e.target.key);
+        console.log(e.target.value, e.target.id);
         let selServiceId = e.target.id
         let selService = e.target.value
         
 
-        this.setState({selServiceId})
-        this.setState({selService})
+        this.setState({selServiceId, selService})
         console.log(this.state)
+        this.findDuration(e.target.id)
+    }
+
+    findDuration = (id) => {
+        let selected = this.state.services.find(service => service._id === id)
+        let serviceDuration = selected.fullLength/60
+        console.log('duration', serviceDuration)
+        this.setState({serviceDuration})
     }
 
     // get date and time of booking
@@ -93,11 +101,17 @@ class Widget extends Component {
 
     updateTime = (e) => {
         console.log('target', e.target.id)
+
+
+        // Get booking time
+
         let newStart = e.target.id
         let newEnd = e.target.id + this.state.duration
-        this.setState({newStart})
-        this.setState({newEnd})
+        console.log('newStart', e.target.id)
+
+        this.setState({newStart, newEnd})
     }
+    
 
     // signup
     updateDetails= (e) => {
@@ -153,7 +167,7 @@ class Widget extends Component {
                         <Header showWiget={this.props.showWidget} hideWidget={this.props.hideWidget}></Header>
                         <div className="wrapper">
                         {this.state.step === 0 && <SelectService step={0} next={this.next} id={this.props.id} services={this.state.services} updateService={this.updateService} selectService={this.selectService}/>}
-                        {this.state.step === 1 && <SelectDateTime step={1}  next={this.next} prev={this.prev} serviceDuration={this.state.serviceDuration} bookings={this.state.bookings} services={this.state.services} filterByDate={this.filterByDate} date={this.state.date} updateDate={this.updateDate} updateTime={this.updateTime}/>}
+                        {this.state.step === 1 && <SelectDateTime step={1}  next={this.next} prev={this.prev} serviceDuration={this.state.serviceDuration} bookings={this.state.bookings} services={this.state.services} filterByDate={this.filterByDate} date={this.state.date} updateDate={this.updateDate} updateTime={this.updateTime} selService={this.state.selService}/>}
                         {this.state.step === 2 && <FillData step={2}  next={this.next} prev={this.prev} signup={this.signup} updateDetails={this.updateDetails}/>}
                         {this.state.step === 3 && <Review step={3}  next={this.next} prev={this.prev} serviceDuration={this.state.serviceDuration} services={this.state.services}/>}
                         {this.state.step === 4 && <ThankYou step={4} back={this.back} />}

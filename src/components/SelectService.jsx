@@ -33,7 +33,7 @@ class SelectService extends Component {
                                 return (
                                     <div className="input">
                                         <input required type="radio" value={service.name} name="services" id={service._id} key={index} onChange={(e) => this.props.updateService(e)}/>
-                                        <label htmlFor={service}><span>{service.fullLength} min. - {service.name} - <strong>${service.price}</strong></span></label>
+                                        <label htmlFor={service.name}><span>{service.fullLength} min. - {service.name} - <strong>${service.price}</strong></span></label>
                                     </div>
                                     )
                                 })}

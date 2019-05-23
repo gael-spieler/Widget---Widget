@@ -1,8 +1,9 @@
 #calendar {
   width: 100%;
-  margin: auto;
-  background-color: aquamarine;
-  
+  margin: 1rem auto;
+  background-color: $neutral; 
+  border-left: 1px solid $light;
+  border-right: 1px solid $light;
 }
 
 .slot-container {
@@ -11,7 +12,7 @@
 
 }
 .slot {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid $light;
   padding: 0.5rem;
   height: 2rem;
   width: 100%;
@@ -31,23 +32,31 @@
   height: 2rem;
   text-align: center;
   cursor: not-allowed;
+  color: $neutral;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 0.9rem;
 }
 
 .my-booking {
-  background: rgba(0,0,255,.2);
+  background: rgba(32, 193, 199, 0.5);
   position: absolute;
   width: 100%;
-  padding: 10px 0 10px 10px;
+  padding: 0.5rem;
   height: 2rem;
   text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1rem;
+  color: $neutral;
 }
 
 #nav {
   width: 100%;
   margin: auto;
   text-align: center;
-  border: 1px solid #ccc;
-  padding: 10px;
+  background-color: $light;
+  padding: 0.75rem;
 }
 
 #prev {
@@ -64,5 +73,18 @@ button {
 }
 
 #date {
-  font-weight: 700;
+  font-weight: 400;
 }
+
+input[type=date]{
+  font-family: 'nunito', sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 3px;
+  border: none;
+  padding: 0.25rem;
+
+}
+
+::-webkit-datetime-edit-text { color:$success;}
+::-webkit-inner-spin-button { display: none; }

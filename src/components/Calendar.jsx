@@ -4,6 +4,7 @@ import SwitchDate from './SwitchDate';
 import Slots from './Slots';
 import Bookings from './Bookings';
 
+
 class Calendar extends Component {
     state = {
         availableSlots: []
@@ -45,7 +46,7 @@ class Calendar extends Component {
                     <div id="calendar">
                         <SwitchDate bookings={this.props.bookings} filterByDate={this.props.filterByDate} date={this.props.date} updateDate={this.props.updateDate}></SwitchDate>
                         <div className="slot-container">
-                            <Slots availableSlots={this.state.availableSlots} buildSlots={this.buildSlots} updateTime={this.props.updateTime}></Slots>
+                            <Slots availableSlots={this.state.availableSlots} buildSlots={this.buildSlots} updateTime={this.props.updateTime} selService={this.props.selService}></Slots>
                             <Bookings bookings={this.props.bookings}></Bookings>
                         </div>
                     </div>
@@ -55,6 +56,9 @@ class Calendar extends Component {
 }
 
 export default Calendar;
+
+// {this.props.visible === true && <MyBooking visible={this.props.visible} newBookingStyle={this.props.newBookingstyle}/>}
+
 
 /* <Bookings booked={this.state.booked} renderBookings={this.renderBookings} notAvailable={this.state.notAvailable}></Bookings> */
 
@@ -82,5 +86,7 @@ export default Calendar;
 //     let previousDay = moment(date).subtract(1, 'days')
 //     console.log({previousDay})
 // } 
+
+
 
 
