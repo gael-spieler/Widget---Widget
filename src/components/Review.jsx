@@ -2,6 +2,22 @@ import React, {Component} from 'react';
 import '../index.scss'
 
 class Review extends Component {
+
+    state = {
+        fullService: {}
+    }
+
+    componentWillMount() {
+        console.log(this.props)
+        
+        const fullService = this.props.services.find((service) =>{
+            let id = this.props.booking.selServiceId
+            let fromList = service._id
+            return id === fromList
+        })
+        console.log({fullService})
+        this.setState({fullService})
+    }
     render() {
         var svgStyle = {
             stroke: '#fbba42',
@@ -13,9 +29,8 @@ class Review extends Component {
                         <div className="container_booking">
                             <span><strong>Your Booking:</strong></span>
                             <ul>
-                                <li><small>1.5h - Fitness Training - $150</small></li>
-                                <li><small>Tuesday, 17th May 2019</small></li>
-                                <li><small>20:00pm - 21:30pm</small></li>
+                                <li><small>{this.state.fullService.fullLength} min. - {this.state.fullService.name} - ${this.state.fullService.price}</small></li>
+                                
                             </ul>
                         </div>
                         <svg height="3" width="100">
@@ -24,7 +39,7 @@ class Review extends Component {
                         <div className="container_booking">
                             <span><strong>Your Details:</strong></span>
                             <ul>
-                                <li><small>Name: Pedro Don Pedro</small></li>
+                                <li><small>Name: {this.props.first_name} {this.props.last_name}</small></li>
                                 <li><small>Card Number: ***234</small></li>
                                 <li><small>Expiration: 04/22</small></li>
                             </ul>
@@ -46,3 +61,6 @@ class Review extends Component {
 }
 
 export default Review;
+
+/* <li><small>Tuesday, 17th May 2019</small></li>
+<li><small>20:00pm - 21:30pm</small></li> */

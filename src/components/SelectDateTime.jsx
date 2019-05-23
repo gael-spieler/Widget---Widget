@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Calendar from './Calendar.jsx';
 import '../index.scss';
 
 class SelectDateTime extends Component {
@@ -9,60 +10,7 @@ class SelectDateTime extends Component {
                         <p className="container_claim">
                             Select availability:
                         </p> 
-
-                        <div className="calendar">
-
-                                <div className="month"> 
-                                    <ul className="month_header">
-                                        <li>&#10094;</li>
-                                        <li>May 2019</li>
-                                        <li>&#10095;</li>
-                                    </ul>
-                                </div>
-                                
-                                <ul className="weekdays">
-                                    <li>&#10094;</li>
-                                    <li>M</li>
-                                    <li>T</li>
-                                    <li>W</li>
-                                    <li>T</li>
-                                    <li>F</li>
-                                    <li>S</li>
-                                    <li>S</li>
-                                    <li>&#10095;</li>
-                                </ul>
-                                    
-                                <ul className="days"> 
-                                    <li>*</li>
-                                    <li>1</li>
-                                    <li>2</li>
-                                    <li>3</li>
-                                    <li>4</li>
-                                    <li>5</li>
-                                    <li>6</li>
-                                    <li>7</li>
-                                    <li>*</li>
-                                </ul>
-                            </div>
-
-                      
-                        <div className="time">
-                            <div className="time_slots">
-                                <p>10:00 - 11:30</p>
-                            </div>
-                            <div className="time_slots">
-                                <p>12:00 - 13:00</p>
-                            </div>
-                            <div className="time_slots">
-                                <p>15:00 - 16:30</p>
-                            </div>
-                            <div className="time_slots">
-                                <p>19:00 - 20:30</p>
-                            </div>
-                            <div className="time_slots">
-                                <p>20:30 - 22:00</p>
-                            </div>
-                        </div>
+                         <Calendar bookings={this.props.bookings} newBooking={this.props.newBooking} services={this.props.services} filterByDate={this.props.filterByDate}></Calendar> 
 
                         <div className="container_nav" >
                             <div className="prev" onClick={() => this.props.prev(this.props.step)} >
@@ -79,3 +27,60 @@ class SelectDateTime extends Component {
 }
 
 export default SelectDateTime;
+
+
+// <div className="calendar">
+
+// <div className="month"> 
+//     <ul className="month_header">
+//         <li>&#10094;</li>
+//         <li>May 2019</li>
+//         <li>&#10095;</li>
+//     </ul>
+// </div>
+
+// <ul className="weekdays">
+//     <li>&#10094;</li>
+//     <li>M</li>
+//     <li>T</li>
+//     <li>W</li>
+//     <li>T</li>
+//     <li>F</li>
+//     <li>S</li>
+//     <li>S</li>
+//     <li>&#10095;</li>
+// </ul>
+    
+// <ul className="days"> 
+//     <li>*</li>
+//     <li>1</li>
+//     <li>2</li>
+//     <li>3</li>
+//     <li>4</li>
+//     <li>5</li>
+//     <li>6</li>
+//     <li>7</li>
+//     <li>*</li>
+// </ul>
+// </div>
+
+
+// <div className="time">
+// <div className="time_slots">
+// <p>10:00 - 11:30</p>
+// </div>
+// <div className="time_slots">
+// <p>12:00 - 13:00</p>
+// </div>
+// <div className="time_slots">
+// <p>15:00 - 16:30</p>
+// </div>
+// <div className="time_slots">
+// <p>19:00 - 20:30</p>
+// </div>
+// <div className="time_slots">
+// <p>20:30 - 22:00</p>
+// </div>
+// </div>
+
+/* <Calendar bookings={this.props.bookings} newBooking={this.props.newBooking} services={this.props.services}></Calendar> */
