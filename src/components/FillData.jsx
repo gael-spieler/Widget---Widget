@@ -57,6 +57,7 @@ class FillData extends Component {
                         <label htmlFor="cvc">CVC</label>
                         <input type="number" pattern="^[0-9]{3}$" />
                     </div>
+                    
                 </div>
             </div>
             <input type="submit" value="Signup and Review" className="next big submit" />
@@ -79,3 +80,5 @@ export default FillData;
 /* <p className="login" >
 I already have an account. <a onClick={()=> this.showLogin()} title="Log In to finalize your booking"> Login</a>      
 </p>  */
+
+{/* <div className="error">{this.props.error}</div> */}

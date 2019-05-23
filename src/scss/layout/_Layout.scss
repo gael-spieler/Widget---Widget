@@ -7,12 +7,12 @@
         right: 3%;
         border: 1px solid lightgrey;
         border-radius: 5px;
-        -webkit-box-shadow: 6px 6px 3px 0px rgba(168,168,168,1);
-        -moz-box-shadow: 6px 6px 3px 0px rgba(168,168,168,1);
-        box-shadow: 6px 6px 3px 0px rgba(168,168,168,1);
+        -webkit-box-shadow: 3px 3px 3px 0px rgba(168,168,168,1);
+        -moz-box-shadow: 3px 3px 3px 0px rgba(168,168,168,1);
+        box-shadow: 3px 3px 3px 0px rgba(168,168,168,1);
     }
     @media screen and (min-width:$mq-l) {
-        width: 25vw;
+        width: 30vw;
     }
 
 }

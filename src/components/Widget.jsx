@@ -56,6 +56,7 @@ class Widget extends Component {
         })
         .catch(error => {
             console.log('error', error);
+
         });
         this.filterByDate(this.state.date)
 
@@ -164,7 +165,7 @@ class Widget extends Component {
             this.next(this.state.step);
         })
         .catch(error => {
-            console.log('error', error);
+            console.log('error', error.message);
         });
         
     }
@@ -212,6 +213,7 @@ class Widget extends Component {
         })
         .catch(error => {
             console.log('error', error);
+
         })  
     }
 
@@ -225,8 +227,8 @@ class Widget extends Component {
                         <div className="wrapper">
                         {this.state.step === 0 && <SelectService step={0} next={this.next} id={this.props.id} services={this.state.services} updateService={this.updateService} selectService={this.selectService}/>}
                         {this.state.step === 1 && <SelectDateTime step={1}  next={this.next} prev={this.prev} serviceDuration={this.state.serviceDuration} bookings={this.state.bookings} services={this.state.services} filterByDate={this.filterByDate} date={this.state.date} updateDate={this.updateDate} updateTime={this.updateTime} selService={this.state.selService}/>}
-                        {this.state.step === 2 && <FillData step={2}  next={this.next} prev={this.prev} signup={this.signup} updateDetails={this.updateDetails}/>}
-                        {this.state.step === 3 && <Review step={3}  next={this.next} prev={this.prev} serviceDuration={this.state.serviceDuration} selService={this.state.selService} servicePrice={this.state.servicePrice} newDate={this.state.newDate} newStart={this.state.newStart} name={this.state.first_name} lastname={this.state.last_name} email={this.state.email} book={this.book}/>}
+                        {this.state.step === 2 && <FillData step={2}  next={this.next} prev={this.prev} signup={this.signup} error={this.state.errorMessage} updateDetails={this.updateDetails}/>}
+                        {this.state.step === 3 && <Review step={3}  next={this.next} prev={this.prev} serviceDuration={this.state.serviceDuration} error={this.state.errorMessage} selService={this.state.selService} servicePrice={this.state.servicePrice} newDate={this.state.newDate} newStart={this.state.newStart} name={this.state.first_name} lastname={this.state.last_name} email={this.state.email} book={this.book}/>}
                         {this.state.step === 4 && <ThankYou step={4} back={this.back} name={this.state.first_name} selService={this.state.selService}/>}
                         </div>
                     </div>
