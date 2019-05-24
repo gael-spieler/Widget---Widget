@@ -50,6 +50,7 @@ class Widget extends Component {
         .then(response => {
             // console.log('response', response.data);
             let services = response.data
+            // services.map(service => service.fullLength = (service.preparation_time + service.findDuration) )
             services.map(service => service.fullLength = 60 )
             console.log({services})
             this.setState({services})
@@ -69,10 +70,10 @@ class Widget extends Component {
         .then(response => {
             console.log('response', response.data);
             let bookings = response.data
-                bookings.map(booking => booking.start = new Date(booking.start.toString()))
-                bookings.map(booking => booking.end = new Date(booking.end.toString()))
-                bookings.map(booking => booking.start = parseInt(booking.start.getHours().toString(), 10))
-                bookings.map(booking => booking.end = parseInt(booking.end.getHours().toString(), 10))
+                bookings.map(booking => booking.start = new Date(booking.start))
+                bookings.map(booking => booking.end = new Date(booking.end))
+                bookings.map(booking => booking.start = parseInt(booking.start.getHours(), 10))
+                bookings.map(booking => booking.end = parseInt(booking.end.getHours(), 10))
 
                 this.setState({bookings}, function() {
                     console.log('local time zone', bookings) 
