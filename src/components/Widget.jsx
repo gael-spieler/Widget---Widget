@@ -68,9 +68,15 @@ class Widget extends Component {
         .then(response => {
             console.log('response', response.data);
             let bookings = response.data
+            this.setState({bookings}, function() {
+                bookings.map(booking => booking.start = new Date(booking.start))
+                bookings.map(booking => booking.end = new Date(booking.end))
+                
+            })
+            console.log('local time zone', bookings)
+            
             bookings.map(booking => booking.start = moment(booking.start).format('HH'))
             bookings.map(booking => booking.end = moment(booking.end).format('HH'))
-            this.setState({bookings})
             console.log('state bookings', this.state.bookings)
         })
         .catch(error => {
@@ -191,9 +197,11 @@ class Widget extends Component {
         // convert dates
         let startDate = this.state.newDate.toString()
         var parts = startDate.split('-')
-        let start = new Date (parts[0], parts[1], parts[2], this.state.newStart)
-        let end = new Date (parts[0], parts[1], parts[2], (this.state.newStart + this.state.serviceDuration))
+        let start = new Date (parts[0], parts[1], parts[2] - 1, this.state.newStart)
+        let end = new Date (parts[0], parts[1], parts[2] - 1, (this.state.newStart + this.state.serviceDuration))
         console.log(start, end)
+
+
 
         let data = {
             start: start,

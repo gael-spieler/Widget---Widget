@@ -81,4 +81,4 @@ export default FillData;
 I already have an account. <a onClick={()=> this.showLogin()} title="Log In to finalize your booking"> Login</a>      
 </p>  */
 
-{/* <div className="error">{this.props.error}</div> */}
+{/* <div className="error">{this.props.error}</div>  */}
