@@ -25,11 +25,11 @@ class Widget extends Component {
 
         selServiceId: '',
         selService: '',
-        serviceDuration: 1,
+        serviceDuration: '',
         servicePrice: '',
 
         newDate: moment().format('YYYY-MM-DD'),
-        newStart: 12,
+        newStart: '',
         newEnd: '',
         customerId: '',
         providerId: this.props.id,
@@ -62,6 +62,7 @@ class Widget extends Component {
 
         this.book()
     }
+
     // get Bookings
     filterByDate = (date) => {
         axios.get(process.env.REACT_APP_GET_BOOKINGS + this.props.id + '/?date=' + date)
@@ -130,11 +131,12 @@ class Widget extends Component {
 
         // Get booking time
 
-        let newStart = e.target.id
-        let newEnd = e.target.id + this.state.duration
+        let newStart = parseInt(e.target.id, 10)
+        let newEnd = newStart + this.state.serviceDuration
         console.log(newStart)
-        console.log(newEnd)
+        console.log('newEnd', newEnd)
         console.log('newStart', e.target.id)
+        console.log(typeof(newStart))
 
         this.setState({newStart, newEnd})
     }
@@ -197,8 +199,9 @@ class Widget extends Component {
         // convert dates
         let startDate = this.state.newDate.toString()
         var parts = startDate.split('-')
-        let start = new Date (parts[0], parts[1], parts[2] - 1, this.state.newStart)
-        let end = new Date (parts[0], parts[1], parts[2] - 1, (this.state.newStart + this.state.serviceDuration))
+        let hours = this.state.newStart + this.state.serviceDuration
+        let start = new Date (parts[0], parts[1] -1 , parts[2], this.state.newStart)
+        let end = new Date (parts[0], parts[1] - 1, parts[2], hours)
         console.log(start, end)
 
 
@@ -210,10 +213,11 @@ class Widget extends Component {
             customer: this.state.customerId,
             provider: this.state.providerId
         }
+        console.log({data})
 
-        this.setState({data})
+        this.setState({data}, function() {
 
-        axios.post(process.env.REACT_APP_CREATE_BOOKING, data)
+        axios.post(process.env.REACT_APP_CREATE_BOOKING, this.state.data)
         .then(response => {
             console.log(response)
             alert('Booking Created successfully')
@@ -223,6 +227,8 @@ class Widget extends Component {
             console.log('error', error);
 
         })  
+        })
+
     }
 
 

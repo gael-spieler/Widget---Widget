@@ -17,12 +17,11 @@ class Calendar extends Component {
     buildSlots = () => {
         console.log(this.props)  
         
-        let opening = new Date(2019, 0, 1, 9, 0)
-        let closing = new Date(2019, 0, 1, 17, 0)
+
         
         const allowed = {
-            start: opening.getHours(),
-            end: closing.getHours()
+            start: 9,
+            end: 17
         }
     
         console.log({allowed})
@@ -88,5 +87,11 @@ export default Calendar;
 // } 
 
 
+// let opening = new Date(2019, 0, 1, 9, 0)
+// let closing = new Date(2019, 0, 1, 17, 0)
 
+// const allowed = {
+//     start: opening.getHours(),
+//     end: closing.getHours()
+// }
 
