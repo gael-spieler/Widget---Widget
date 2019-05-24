@@ -69,16 +69,17 @@ class Widget extends Component {
         .then(response => {
             console.log('response', response.data);
             let bookings = response.data
-            this.setState({bookings}, function() {
-                bookings.map(booking => booking.start = new Date(booking.start))
-                bookings.map(booking => booking.end = new Date(booking.end))
+                bookings.map(booking => booking.start = new Date(booking.start.toString()))
+                bookings.map(booking => booking.end = new Date(booking.end.toString()))
+                bookings.map(booking => booking.start = parseInt(booking.start.getHours().toString(), 10))
+                bookings.map(booking => booking.end = parseInt(booking.end.getHours().toString(), 10))
+
+                this.setState({bookings}, function() {
+                    console.log('local time zone', bookings) 
+                    console.log('state bookings', this.state.bookings)
+                })
                 
-            })
-            console.log('local time zone', bookings)
-            
-            bookings.map(booking => booking.start = moment(booking.start).format('HH'))
-            bookings.map(booking => booking.end = moment(booking.end).format('HH'))
-            console.log('state bookings', this.state.bookings)
+
         })
         .catch(error => {
             console.log('error', error);

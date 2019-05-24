@@ -3,31 +3,32 @@ import '../index.scss'
 
 class Bookings extends Component {
 
-    componentDidMount() {
-
+    state = {
+        notAvailableStyle: {}
     }
 
     render() {
         return (
             <div>
                 {
-                    this.props.bookings.map((b) => {
+                    this.props.bookings.map((booking) => {
 
                     let opening = new Date(2019, 0, 1, 9, 0)
                     let closing = new Date(2019, 0, 1, 17, 0)
                     
                     const allowed = {
-                        start: opening.getHours(),
-                        end: closing.getHours()
+                        start: parseInt(opening.getHours().toString(), 10),
+                        end: parseInt(closing.getHours().toString(), 10)
                     }  
                     
-                    // b.start = b.start.getHours()
+                    let startNumber = booking.start.toString()
                     
                     let bookingStyle = {
-                    top: (b.start - allowed.start)*32 + 'px'
+                    top: (startNumber - allowed.start)*32 + 'px'
                     }
+                    console.log(startNumber, bookingStyle)
                     return (
-                    <div className="booking" style={bookingStyle} name={b.name}>Not Available</div>
+                    <div className="booking" style={bookingStyle} name={booking.name}>Not Available</div>
                     )
                     })
                     }
